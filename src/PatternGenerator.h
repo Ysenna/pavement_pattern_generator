@@ -1,13 +1,18 @@
-//
-// Created by karolina on 11.6.25.
-//
-
 #ifndef PATTERNGENERATOR_H
 #define PATTERNGENERATOR_H
 
+#include <vector>
 
 
-class PatternGenerator {};
+class PatternGenerator {
+    public:
+     std::vector<std::vector<unsigned>>  generatePattern(
+         int areaWidth,
+         int areaHeight,
+         int seamThickness,
+         int rowHeight,
+         std::vector<unsigned> tileWidths);
+};
 
 
 

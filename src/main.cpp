@@ -1,6 +1,3 @@
-//
-// Created by karolina on 11.6.25.
-//
 #include <iostream>
 
 #include "PatternGenerator.h"
@@ -12,6 +9,8 @@ int main(int argc, const char* argv[])
     std::cout << "Running pattern generator\n";
 
     PatternGenerator patternGenerator;
+    std::vector <unsigned> tileWidths = {40, 60, 90};
+    std::vector<std::vector<unsigned>>  pattern = patternGenerator.generatePattern(500, 800, 2, 40, tileWidths);
 
     return 0;
 }
