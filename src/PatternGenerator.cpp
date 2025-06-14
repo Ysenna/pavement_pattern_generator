@@ -7,7 +7,7 @@
 #include <random>
 
 
- std::vector<std::vector<unsigned>> PatternGenerator::generatePattern(
+ std::vector<std::vector<unsigned>> PatternGenerator::generate(
     int areaWidth,
     int areaHeight,
     int seamThickness,

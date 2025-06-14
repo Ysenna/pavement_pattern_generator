@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.25)
-project(pavement_pattern_generator)
+add_library(pattern_generator_lib STATIC
+        PatternGenerator.cpp
+)
 
-add_executable(pavement_pattern_generator
-                main.cpp
-                PatternGenerator.cpp)
+target_include_directories(pattern_generator_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

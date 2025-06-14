@@ -1,0 +1,3 @@
+add_executable(pavement_pattern_generator main.cpp)
+
+target_link_libraries(pavement_pattern_generator pattern_generator_lib)

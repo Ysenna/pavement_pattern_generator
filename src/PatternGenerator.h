@@ -6,7 +6,7 @@
 
 class PatternGenerator {
     public:
-     std::vector<std::vector<unsigned>>  generatePattern(
+     std::vector<std::vector<unsigned>>  generate(
          int areaWidth,
          int areaHeight,
          int seamThickness,
