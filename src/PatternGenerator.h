@@ -7,10 +7,10 @@
 class PatternGenerator {
     public:
      std::vector<std::vector<unsigned>>  generate(
-         int areaWidth,
-         int areaHeight,
-         int seamThickness,
-         int rowHeight,
+         unsigned areaWidth,
+         unsigned areaHeight,
+         unsigned seamThickness,
+         unsigned rowHeight,
          std::vector<unsigned> tileWidths);
 };
 

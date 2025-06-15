@@ -8,11 +8,11 @@
 
 
  std::vector<std::vector<unsigned>> PatternGenerator::generate(
-    int areaWidth,
-    int areaHeight,
-    int seamThickness,
-    int rowHeight,
-    std::vector<unsigned> tileWidths)
+    const unsigned areaWidth,
+    const unsigned areaHeight,
+    const unsigned seamThickness,
+    const unsigned rowHeight,
+    const std::vector<unsigned> tileWidths)
 {
     // Initialize a random number generator
     std::random_device rd;
@@ -20,8 +20,12 @@
     std::uniform_int_distribution<> rndDistrib(0, tileWidths.size() - 1);
 
     // Generate pavement pattern
-    unsigned rowCount = (areaHeight - rowHeight) / (rowHeight + seamThickness) + 1;
+    const unsigned rowCount = ceil(static_cast<double>(areaHeight - rowHeight) / (rowHeight + seamThickness)) + 1;
     std::vector<std::vector<unsigned>> generatedTileSizes;
+    if (areaHeight == 0 || areaWidth == 0) {
+        return generatedTileSizes;
+    }
+
     for (int row = 0; row < rowCount; row++) {
         generatedTileSizes.push_back(std::vector<unsigned>());
 
