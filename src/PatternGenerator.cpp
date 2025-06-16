@@ -36,6 +36,10 @@
             rowWidth += tileWidths.at(tileIdx)+ seamThickness;
             generatedTileSizes[row].push_back(tileWidths.at(tileIdx));
         }
+        rowWidth -= seamThickness;
+        if (rowWidth > areaWidth) {
+            generatedTileSizes[row].back() -= rowWidth - areaWidth;
+        }
     }
 
     return generatedTileSizes;

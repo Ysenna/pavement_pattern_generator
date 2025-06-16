@@ -5,32 +5,48 @@
 
 
 
-TEST(PatternGeneratorTests, ReturnsNotEmpty)
-{
+class PatternGeneratorTests : public ::testing::Test {
+protected:
     PatternGenerator patternGenerator;
-    const std::vector<unsigned> tileWidths = {40, 60, 90};
-    EXPECT_FALSE(patternGenerator.generate(20, 20, 2, 20, tileWidths).empty());
+    std::vector<unsigned> tileWidths = {40, 60, 90};
+    const unsigned areaWidth = 200;
+    const unsigned areaHeight = 100;
+    const unsigned rowHeight = 20;
+    const unsigned seamThickness = 2;
+};
+
+TEST_F(PatternGeneratorTests, ReturnsNotEmpty)
+{
+    EXPECT_FALSE(patternGenerator.generate(areaWidth, areaHeight, seamThickness, rowHeight, tileWidths).empty());
 }
 
-TEST(PatternGeneratorTests, ReturnsEmpty_WhenZeroWidth)
+TEST_F(PatternGeneratorTests, ReturnsEmpty_WhenZeroWidth)
 {
-    PatternGenerator patternGenerator;
-    const std::vector<unsigned> tileWidths = {40, 60, 90};
-    EXPECT_TRUE(patternGenerator.generate(0, 20, 2, 20, tileWidths).empty());
+    EXPECT_TRUE(patternGenerator.generate(0, areaHeight, seamThickness, rowHeight, tileWidths).empty());
 }
 
-TEST(PatternGeneratorTests, ReturnsEmpty_WhenZeroHeight)
+TEST_F(PatternGeneratorTests, ReturnsEmpty_WhenZeroHeight)
 {
-    PatternGenerator patternGenerator;
-    const std::vector<unsigned> tileWidths = {40, 60, 90};
-    EXPECT_TRUE(patternGenerator.generate(20, 0, 2, 20, tileWidths).empty());
+    EXPECT_TRUE(patternGenerator.generate(areaWidth, 0, seamThickness, rowHeight, tileWidths).empty());
 }
 
-TEST(PatternGeneratorTests, ReturnsCorrectRowCount)
+TEST_F(PatternGeneratorTests, ReturnsCorrectRowCount)
 {
-    PatternGenerator patternGenerator;
-    const std::vector<unsigned> tileWidths = {40, 60, 90};
     unsigned const expectedRowCount = 5;
-    EXPECT_EQ(patternGenerator.generate(20, 100, 2, 20, tileWidths).size(), expectedRowCount);
+    EXPECT_EQ(patternGenerator.generate(areaWidth, areaHeight, seamThickness, rowHeight, tileWidths).size(), expectedRowCount);
 }
 
+TEST_F(PatternGeneratorTests, AllRowsHaveAreaWidth)
+{
+    const std::vector<std::vector<unsigned>> pattern =
+        patternGenerator.generate(areaWidth, areaHeight, seamThickness, rowHeight, tileWidths);
+
+    for (const auto &row : pattern) {
+        unsigned rowWidth = 0;
+        for (auto col : row) {
+            rowWidth += col + seamThickness;
+        }
+        rowWidth -= seamThickness;
+        EXPECT_EQ(rowWidth, areaWidth);
+    }
+}
