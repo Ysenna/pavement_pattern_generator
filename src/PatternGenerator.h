@@ -1,17 +1,32 @@
 #ifndef PATTERNGENERATOR_H
 #define PATTERNGENERATOR_H
 
+#include <random>
 #include <vector>
 
 
+
+class PatternGeneratorTests;
+
 class PatternGenerator {
-    public:
-     std::vector<std::vector<unsigned>>  generate(
+public:
+    std::vector<std::vector<unsigned>>  generate(
          unsigned areaWidth,
          unsigned areaHeight,
          unsigned seamThickness,
          unsigned rowHeight,
          std::vector<unsigned> tileWidths);
+
+private:
+    std::vector<std::vector<unsigned>> generateWithSeed(
+        unsigned areaWidth,
+        unsigned areaHeight,
+        unsigned seamThickness,
+        unsigned rowHeight,
+        std::vector<unsigned> tileWidths,
+        std::mt19937);
+
+    friend class PatternGeneratorTests;
 };
 
 
