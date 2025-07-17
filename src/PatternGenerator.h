@@ -6,16 +6,6 @@
 
 
 
-struct Params
-{
-    unsigned areaWidth;
-    unsigned areaHeight;
-    unsigned rowHeight;
-    unsigned seamThickness;
-};
-
-
-
 class PatternGeneratorTests;
 
 class PatternGenerator {
